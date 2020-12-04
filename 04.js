@@ -23,19 +23,19 @@ fs.readFile('inputs/04.txt', 'utf8', (err, data) => {
 
                 switch(key) {
                     case 'byr':
-                        if(/^19[2-9][0-9]$|^200[0-2]$/.test(val))
+                        if(/^(19[2-9][0-9]|200[0-2])$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'iyr':
-                        if(/^201[0-9]$|^2020$/.test(val))
+                        if(/^(201[0-9]|^2020)$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'eyr':
-                        if(/^202[0-9]$|^2030$/.test(val))
+                        if(/^(202[0-9]|2030)$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'hgt':
-                        if(/^(1[5-8][0-9]|19[0-3])cm$|^(59|6[0-9]|7[0-6])in$/.test(val))
+                        if(/^((1[5-8][0-9]|19[0-3])cm|^(59|6[0-9]|7[0-6])in)$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'hcl':
@@ -43,7 +43,7 @@ fs.readFile('inputs/04.txt', 'utf8', (err, data) => {
                             removeAndIncrement();
                         break;
                     case 'ecl':
-                        if(/^amb$|^blu$|^brn$|^gry$|^grn$|^hzl$|^oth$/.test(val))
+                        if(/^(amb|blu|brn|gry|grn|hzl|oth)$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'pid':
