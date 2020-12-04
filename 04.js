@@ -51,7 +51,7 @@ fs.readFile('inputs/04.txt', 'utf8', (err, data) => {
                     case 'hcl':
                         const first = val.substring(0, 1);
                         const rest = val.substring(1);
-                        if(first === '#' && /[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]/.test(rest)){
+                        if(first === '#' && /[a-f0-9]{6}/.test(rest)){
                             required.splice(required.indexOf(field.substring(0, 3)), 1);
                             validFields++;
                         }
