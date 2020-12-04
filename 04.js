@@ -27,7 +27,7 @@ fs.readFile('inputs/04.txt', 'utf8', (err, data) => {
                             removeAndIncrement();
                         break;
                     case 'iyr':
-                        if(/^(201[0-9]|^2020)$/.test(val))
+                        if(/^(201[0-9]|2020)$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'eyr':
@@ -35,7 +35,7 @@ fs.readFile('inputs/04.txt', 'utf8', (err, data) => {
                             removeAndIncrement();
                         break;
                     case 'hgt':
-                        if(/^((1[5-8][0-9]|19[0-3])cm|^(59|6[0-9]|7[0-6])in)$/.test(val))
+                        if(/^((1[5-8][0-9]|19[0-3])cm|(59|6[0-9]|7[0-6])in)$/.test(val))
                             removeAndIncrement();
                         break;
                     case 'hcl':
