@@ -10,6 +10,7 @@ fs.readFile('inputs/05.txt', 'utf8', (err, data) => {
         const horizontal = parseInt(ticket.substring(7).split('').map(letter => letter === 'L' ? '0' : '1').join(""), 2);
         seats.push(8 * vertical + horizontal);
     }
+
     seats = seats.sort(function(a, b) {
         return a - b;
     });
