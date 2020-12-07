@@ -11,13 +11,11 @@ fs.readFile('inputs/06.txt', 'utf8', (err, data) => {
         let vals = new Array(26).fill(0);
         group.map(elem => 
             elem.split("").map(letter =>
-                 vals[letter.charCodeAt(0) - 'a'.charCodeAt(0)]++
+                    vals[letter.charCodeAt(0) - 'a'.charCodeAt(0)]++
                 )
             );
-        
-        vals.map(val =>
-            val === group.length ? sum++ : null
-        );
+
+        sum += vals.filter(val => val === group.length).length;
     }
     console.log(sum);
 });
