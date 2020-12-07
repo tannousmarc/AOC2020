@@ -11,16 +11,13 @@ fs.readFile('inputs/07.txt', 'utf8', (err, data) => {
         elem[0] = elem[0].slice(0, -1);
 
         for(let i = 1; i < elem.length; i++)
-            map.set(elem[0], map.has(elem[0]) ? [map.get(elem[0])].concat(elem[i]).flat() : elem[i]);
+            map.set(elem[0], map.has(elem[0]) ? [map.get(elem[0])].concat(elem[i]).flat() : [elem[i]]);
     }
 
     let set = new Set();
     const performSearch = (search) => {
         map.forEach((value, key) => {
-            if(Array.isArray(value))
-                value = value.join("");
-
-            if(value.includes(search)){
+            if(value.join("").includes(search)){
                 set.add(key);
                 performSearch(key);
             }
@@ -31,17 +28,13 @@ fs.readFile('inputs/07.txt', 'utf8', (err, data) => {
 
     let sum = 0;
     const performSum = (search, quant) => {
-        let mapGet = map.get(search);
-        if(!Array.isArray(mapGet))
-            mapGet = [mapGet];
-
-        for(val of mapGet){
-            if(val === "no other bags")
+        for(value of map.get(search)){
+            if(value === "no other bags")
                 break;
 
-            val = val.split(" ");
-            sum += quant * Number(val[0]);
-            performSum(val[1] + " " + val[2] + " bag", quant * Number(val[0]));
+            value = value.split(" ");
+            sum += quant * Number(value[0]);
+            performSum(value[1] + " " + value[2] + " bag", quant * Number(value[0]));
         }
     }
     performSum('shiny gold bag', 1);
