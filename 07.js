@@ -10,8 +10,7 @@ fs.readFile('inputs/07.txt', 'utf8', (err, data) => {
         elem.splice(-1);
         elem[0] = elem[0].slice(0, -1);
 
-        for(let i = 1; i < elem.length; i++)
-            map.set(elem[0], map.has(elem[0]) ? [map.get(elem[0])].concat(elem[i]).flat() : [elem[i]]);
+        map.set(elem[0], elem.slice(1));
     }
 
     let set = new Set();
