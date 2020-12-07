@@ -8,7 +8,6 @@ fs.readFile('inputs/07.txt', 'utf8', (err, data) => {
 for(elem of data){
     elem = elem.split(/, | contain |\./);
     elem[0] = elem[0].slice(0, -1);
-
     map.set(elem[0], elem.slice(1, -1));
 }
 
