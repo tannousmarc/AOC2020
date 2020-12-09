@@ -5,11 +5,14 @@ fs.readFile('inputs/07.txt', 'utf8', (err, data) => {
     data = data.split('\n');
 
     let map = new Map();
-for(elem of data){
-    elem = elem.split(/, | contain |\./);
-    elem[0] = elem[0].slice(0, -1);
-    map.set(elem[0], elem.slice(1, -1));
-}
+    for(elem of data){
+        elem = elem.split(/, | contain |\./);
+        elem.splice(-1);
+        elem[0] = elem[0].slice(0, -1);
+
+        for(let i = 1; i < elem.length; i++)
+            map.set(elem[0], map.has(elem[0]) ? [map.get(elem[0])].concat(elem[i]).flat() : [elem[i]]);
+    }
 
     let set = new Set();
     const performSearch = (search) => {
