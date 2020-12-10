@@ -23,7 +23,7 @@ fs.readFile('inputs/10.txt', 'utf8', (err, data) => {
     }
     console.log(onejolts * threejolts);
 
-    let waysToGetTo = new Array(adapters.length + 1).fill(0);
+    let waysToGetTo = new Array(adapters.length).fill(0);
     waysToGetTo[0] = 1;
     for(let i = 1; i < adapters.length; i++)
         for(let j = 0; j < i; j++)
