@@ -48,15 +48,15 @@ fs.readFile('inputs/13.txt', 'utf8', (err, data) => {
         buses.push(elem === 'x' ? 0 : Number(elem));
     }
 
-    let n = [];
     let a = [];
+    let n = [];
 
     for(let i = 0; i < buses.length; i++){
         if(buses[i] === 0)
             continue;
-        n.push(buses[i] - i);
-        a.push(buses[i])
+        a.push(buses[i] - i);
+        n.push(buses[i])
     }
 
-    console.log(chineseRemainder(n, a));
+    console.log(chineseRemainder(a, n));
 });
