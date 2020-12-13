@@ -1,16 +1,11 @@
 const fs = require('fs');
+const utils = require('./utils');
 
 fs.readFile('inputs/11.txt', 'utf8', (err, data) => {
     if(err) throw err;
     data = data.split('\n');
-    
-    const arrayEquals = (a, b) => {
-        return JSON.stringify(a) === JSON.stringify(b);
-    }
 
-    const countOccupied = mat => {
-        return mat.flat().filter(elem => elem === '#').length;
-    }
+    const countOccupied = mat => mat.flat().filter(elem => elem === '#').length;
 
     const occupiedNextTo = (prevStep, i, j) => {
         let count = 0;
@@ -43,7 +38,7 @@ fs.readFile('inputs/11.txt', 'utf8', (err, data) => {
     }
 
     do{
-        prevStep = JSON.parse(JSON.stringify(currStep));
+        prevStep = utils.deepCloneArray(currStep);
         for(let i = 0; i < prevStep.length; i++)
             for(let j = 0; j < prevStep[i].length; j++){
                 if(prevStep[i][j] === 'L' && occupiedNextTo(prevStep, i, j) === 0)
@@ -52,7 +47,7 @@ fs.readFile('inputs/11.txt', 'utf8', (err, data) => {
                     currStep[i][j] = 'L';
             }
     }
-    while (!arrayEquals(prevStep, currStep));
+    while (!utils.arraysEqual(prevStep, currStep));
 
     console.log(countOccupied(currStep));
 });
