@@ -24,10 +24,8 @@ fs.readFile('inputs/14.txt', 'utf8', (err, data) => {
     let mask;
     let mem = new Map();
     for(let i = 0; i < data.length; i++){
-        if(data[i].includes("mask")){
+        if(data[i].includes("mask"))
             mask = data[i].substring(7);
-            continue;
-        }
         else{
             let place = Number(data[i].split(/\[|\]|\=/)[1]);
             let value = Number(data[i].split(/\[|\]|\=/)[3].substring(1));
