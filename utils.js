@@ -7,6 +7,8 @@ module.exports = {
     arraysEqual: (a, b) => JSON.stringify(a) === JSON.stringify(b),
     // deep clones an array (copy by value not by reference)
     deepCloneArray: array => JSON.parse(JSON.stringify(array)),
+    // multiple arrays' cartesian product
+    cartesianProduct: (...a) => a.reduce((a, b) => a.flatMap(d => b.map(e => [d, e].flat()))),
     // chinese remainder theorem
     // thx to https://github.com/pnicorelli/nodejs-chinese-remainder/blob/master/chinese_remainder.js
     CRT: (a, n) => {
