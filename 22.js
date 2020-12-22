@@ -11,20 +11,16 @@ fs.readFile('inputs/22.txt', 'utf8', (err, data) => {
     const fight = (deck1, deck2 ) => {
         let rounds = new Set();
         while(deck1.length > 0 && deck2.length > 0){
-            if (rounds.has(JSON.stringify(deck1.concat([' '].concat(deck2)))))
+            if(rounds.has(JSON.stringify(deck1.concat([' ', ...deck2]))))
                 return 0;
-            rounds.add(JSON.stringify(deck1.concat([' '].concat(deck2))));
+            rounds.add((JSON.stringify(deck1.concat([' ', ...deck2]))));
 
             const [card1, card2] = [deck1.shift(), deck2.shift()];
+
             if(deck1.length >= card1 && deck2.length >= card2)
-                if(fight(utils.deepCloneArray(deck1.slice(0, card1)), utils.deepCloneArray(deck2.slice(0, card2))) === 0)
-                    deck1.push(card1, card2);
-                else
-                    deck2.push(card2, card1);
-            else if(card1 > card2)
-                deck1.push(card1, card2);
+                fight(deck1.slice(0, card1), deck2.slice(0, card2)) ? deck2.push(card2, card1) : deck1.push(card1, card2);
             else
-                deck2.push(card2, card1);
+                card1 > card2 ? deck1.push(card1, card2) : deck2.push(card2, card1);
         }
         return deck1.length > 0 ? 0 : 1;
     }
